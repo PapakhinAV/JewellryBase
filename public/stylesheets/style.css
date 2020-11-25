@@ -1,0 +1,30 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+.form123{
+  padding: 120px;
+  border: solid, 3px black;
+  background-color: white;
+align-self: center;
+position: absolute;
+transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+}
+
+.form12{
+  padding: 130px;
+  border: solid, 3px black;
+  background-color: white;
+align-self: center;
+position: absolute;
+transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+}
+.err{
+ text-align: center;
+ color: red;
+ text-decoration: underline;
+}
