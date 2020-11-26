@@ -21,7 +21,7 @@ router.post('/', async (req, res, next) => {
   const user = await Users.findOne({ _id: req.session.user.id });
   user.story.push(newEntry._id);
   await user.save();
-  res.redirect(`/entries/${newEntry.id}`);
+  res.redirect(`/users/${user.id}/main`);
 });
 
 // new entries

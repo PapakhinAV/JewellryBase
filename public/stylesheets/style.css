@@ -1,7 +1,8 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  background-color: rgb(185, 185, 185);
+  }
 .form123{
   padding: 120px;
   border: solid, 3px black;
@@ -27,4 +28,17 @@ transform: translate(-50%, -50%);
  text-align: center;
  color: red;
  text-decoration: underline;
+}
+
+.regButtons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 95%;
+  align-items: center;
+  position: fixed;
+transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    width: 60%;
 }
