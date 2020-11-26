@@ -1,4 +1,4 @@
-<h1>Let broccoli be your muse ...</h1>
+<h1>Add new Item</h1>
 
 {{#if errors}}
 <span>Something went wrong:</span>
@@ -10,7 +10,7 @@
 {{/if}}
 
 
-<form method="post" action="/entries">
+<form style="display: flex; flex-direction: column " method="post" action="/entries">
   <label for="title-input" class="block mar-b-1">Наименование товара:</label>
   <input id="title-input" name="nameItems" type="text" value="{{item.nameItems}}" tabindex="1"
     class="block w-100 no-outline no-border pad-1 mar-b-2">
@@ -27,6 +27,6 @@
   <input id="title-input" name="linkPhoto" type="text" value="{{item.linkPhoto}}" tabindex="4"
     class="block w-100 no-outline no-border pad-1 mar-b-2">
 
-  <input type="submit" value="Download" tabindex="3"
+  <input type="submit" value="Save" tabindex="3"
     class="block button w-100 mar-t-4 mar-b-3 pad-2 round-1 text-c center no-border no-outline">
 </form>

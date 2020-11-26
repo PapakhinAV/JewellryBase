@@ -24,9 +24,15 @@ router.post('/registration', async (req, res) => {
       user.admin = false
       await user.save();
       console.log(await user);
-      // req.app.locals.user = user;
-      // req.app.locals.name = user.username;
-      req.session.user = user,
+      req.session.user = {
+        email: user.email,
+        id: user._id,
+        phone: user.phone,
+        nameLombard: user.nameLombard,
+        adressLombard: user.adressLombard,
+        managerName: user.managerName,
+        admin: user.admin,
+      },
         res.redirect(`/users/${user._id}/main`);
     } catch (error) {
       console.log(error);
@@ -49,10 +55,19 @@ router.post('/signin', async (req, res) => {
           console.log('Success login');
           //TODO:
           console.log(currentUser);
-          // req.app.locals.user = currentUser;
-          // req.app.locals.name = currentUser.username;
-          req.session.user = currentUser
-          res.redirect(`/users/${currentUser._id}/main`);
+          req.session.user = {
+            email: currentUser.email,
+            id: currentUser._id,
+            phone: currentUser.phone,
+            nameLombard: currentUser.nameLombard,
+            adressLombard: currentUser.adressLombard,
+            managerName: currentUser.managerName,
+            admin: currentUser.admin,
+          },
+            // req.session.user = {
+            //   email: currentUser.email
+            // }
+            res.redirect(`/users/${currentUser._id}/main`);
         } else { res.render('error', { message: 'Неверный пароль! Повторите ввод' }); }
       } else { res.render('error', { message: 'Неверный логин! Повторите ввод' }); }
     } else { res.render('error', { message: 'Заполните все поля' }); }
@@ -65,8 +80,7 @@ router.get('/signout', (req, res, next) => {
   req.session.destroy((err) => {
     if (err) return res.render('error', { error: err });
     res.clearCookie('sid');
-    req.app.locals.name = null;
-    req.app.locals.user = null;
+
 
     res.redirect('/');
   });

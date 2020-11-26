@@ -61,6 +61,18 @@ app.use(methodOverride((req, res) => {
   }
 }));
 
+app.use((req, res, next) => {
+  res.locals.email = req.session?.user?.email
+  res.locals.id = req.session?.user?.id
+  res.locals.phone = req.session?.user?.phone
+  res.locals.nameLombard = req.session?.user?.nameLombard
+  res.locals.adressLombard = req.session?.user?.adressLombard
+  res.locals.managerName = req.session?.user?.managerName
+  res.locals.admin = req.session?.user?.admin
+  next()
+})
+
+
 app.use('/', indexRouter);
 app.use('/entries', entriesRouter);
 app.use('/users', usersRouter);
