@@ -1,16 +1,21 @@
-<form method="POST" action="/users/registration">
+<form class="regButtons" style="flex-direction: column;" method="POST" action="/users/registration">
   <div>
-    <input type="email" name="email" placeholder="email"
-      class="block button w-100 mar-t-4 mar-b-3 pad-2 round-1 text-c center no-border no-outline">
+    <input type="email" name="email" placeholder="email">
   </div>
   <div>
-    <input type="text" name="username" placeholder="username"
-      class="block button w-100 mar-t-4 mar-b-3 pad-2 round-1 text-c center no-border no-outline">
+    <input type="password" name="password" placeholder="password">
   </div>
   <div>
-    <input type="password" name="password" placeholder="password"
-      class="block button w-100 mar-t-4 mar-b-3 pad-2 round-1 text-c center no-border no-outline">
+    <input type="tel" name="phone" placeholder="tell number">
   </div>
-  <button type="submit"
-    class="block button w-100 mar-t-4 mar-b-3 pad-2 round-1 text-c center no-border no-outline">Submit</button>
+  <div>
+    <input type="text" name="nameLombard" placeholder="organisation name">
+  </div>
+  <div>
+    <input type="text" name="adressLombard" placeholder="adress (City, street, house)">
+  </div>
+  <div>
+    <input type="text" name="managerName" placeholder="manager name">
+  </div>
+  <button type="submit">Submit</button>
 </form>

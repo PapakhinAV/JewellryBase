@@ -1,27 +1,25 @@
 const express = require('express');
 const { checkAuth } = require('../middleweare/auth');
-const { checkEdit } = require('../middleweare/auth');
+// const { checkEdit } = require('../middleweare/auth');
 
 const router = express.Router();
-const Entry = require('../models/entry');
-const Users = require('../models/usermodel');
+const Item = require('../models/item');
+const User = require('../models/user');
 
-console.log('Entries started...');
-
-// entries
 router.get('/', async (req, res, next) => {
-  const entries = await Entry.mostRecent();
-  // console.log(entries);
+  const entries = await Item.mostRecent();
   res.render('entries/index', { entries });
 });
 
 router.post('/', async (req, res, next) => {
-  const newEntry = new Entry({ title: req.body.title, body: req.body.body });
+  let id = req.session.user._id
+  const newEntry = new Item({ nameItems: req.body.nameItems, describe: req.body.describe, price: req.body.price, linkPhoto: req.body.linkPhoto, authorID: id });
+
   await newEntry.save();
-  const user = await Users.findOne({ _id: req.session.user.id });
-  user.story.push(newEntry._id);
-  await user.save();
-  res.redirect(`/entries/${newEntry.id}`);
+  const user = await User.findOne({ _id: req.session.user.id });
+  // user.story.push(newEntry._id);
+  // await user.save();
+  res.redirect(`/users/${id}/main`);
 });
 
 // new entries
@@ -31,27 +29,30 @@ router.get('/new', checkAuth, (req, res, next) => {
 
 // detail entry
 router.get('/:id', async (req, res, next) => {
-  const entry = await Entry.findById(req.params.id);
+  const entry = await Item.findById(req.params.id);
   res.render('entries/show', { entry });
 });
 
 router.put('/:id', async (req, res, next) => {
-  const entry = await Entry.findById(req.params.id);
+  const item = await Item.findById(req.params.id);
 
-  entry.title = req.body.title;
-  entry.body = req.body.body;
-  await entry.save();
+  item.nameItems = req.body.nameItems;
+  item.describe = req.body.describe;
+  item.price = req.body.price
+  item.linkPhoto = req.body.linkPhoto
+  item.authorID = req.session.user._id
+  await item.save();
 
-  res.redirect(`/entries/${entry.id}`);
+  res.redirect(`/entries/${item.id}`);
 });
-
-router.delete('/:id', checkEdit, async (req, res, next) => {
-  await Entry.deleteOne({ _id: req.params.id });
+// checkEdit
+router.delete('/:id', async (req, res, next) => {
+  await Item.deleteOne({ _id: req.params.id });
   res.redirect('/');
 });
-
-router.get('/:id/edit', checkEdit, async (req, res, next) => {
-  const entry = await Entry.findById(req.params.id);
-  res.render('entries/edit', { entry });
+// checkEdit
+router.get('/:id/edit', async (req, res, next) => {
+  const item = await Item.findById(req.params.id);
+  res.render('entries/edit', { item });
 });
 module.exports = router;
