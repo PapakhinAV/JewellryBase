@@ -4,9 +4,13 @@
   <ul class="entries-list no-bullets no-padding">
     {{#each entries}}
     <li class="entry-item pad-b-4">
-      <a href="/entries/{{id}}" class="entry-title font-2 pad-b-1-4">{{title}}</a>
+
+      <a href="/entries/{{id}}" class="entry-title font-2 pad-b-1-4"> <label>Item: </label> {{nameItems}}</a>
+
+      <div class="entry-title font-2 pad-b-1-4"> <label>Price: </label>{{price}} <span>rub.</span> </div>
+      <img class="imgSize" src='{{linkPhoto}}'>
       {{!-- <span class="entry-date block font-3-4 c-lt-gray">Written on {{entry.createdAt}}</span> --}}
-      <p class="entry-stub">{{body}}</p>
+      <p class="entry-stub">{{describe}}</p>
     </li>
     {{/each}}
   </ul>

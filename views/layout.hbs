@@ -13,21 +13,17 @@
 </head>
 
 <body>
-  <div>
-    <nav class="clearfix mar-b-1">
-      <ul class="no-bullets no-margin no-padding right">
+  <nav class="clearfix mar-b-1">
+    <ul class="no-bullets no-margin no-padding right">
 
-        {{#if name}}
-        <li class="pipe-separate t-light-green left">User name: {{name}}</li>
-        <li class="pipe-separate t-light-green left"><a href="/users/signout">sign out</a></li>
-        {{/if}}
-      </ul>
-    </nav>
+      {{#if user}}
+      <li class="pipe-separate t-light-green left">User name: {{user}}</li>
+      <li class="pipe-separate t-light-green left"><a href="/users/signout">sign out</a></li>
+      {{/if}}
+    </ul>
+  </nav>
 
-    {{{body}}}
-
-
-  </div>
+  {{{body}}}
 </body>
 
 </html>

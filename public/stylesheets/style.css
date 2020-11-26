@@ -3,8 +3,12 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: rgb(185, 185, 185);
   }
+  .imgSize{
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 10px;  }
 .form123{
-  padding: 120px;
+  /* padding: 120px; */
   border: solid, 3px black;
   background-color: white;
 align-self: center;
@@ -15,7 +19,7 @@ transform: translate(-50%, -50%);
 }
 
 .form12{
-  padding: 130px;
+  /* padding: 130px; */
   border: solid, 3px black;
   background-color: white;
 align-self: center;

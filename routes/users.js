@@ -1,9 +1,9 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 // const { render } = require('../app');
-const Users = require('../models/usermodel');
+const User = require('../models/user');
+const Item = require('../models/item');
 const { checkAuth } = require('../middleweare/auth');
-const Entry = require('../models/entry');
 
 
 const router = express.Router();
@@ -11,23 +11,26 @@ const router = express.Router();
 router.get('/registration', (req, res, next) => {
   res.render('registration');
 });
+
 router.post('/registration', async (req, res) => {
   //TODO:
-  const { username, password, email } = req.body;
-  if (username && password && email) {
+  const { phone, nameLombard, adressLombard, managerName, password, email } = req.body;
+  if (password && email) {
+    TODO:    // if (username && password && email) {
+
     try {
       const pass = await bcrypt.hash(password, 10);
-      const user = new Users({ username, password: pass, email });
+      const user = new User({ phone, nameLombard, adressLombard, managerName, password: pass, email });
+      user.admin = false
       await user.save();
-      req.app.locals.user = user;
-      req.app.locals.name = user.username;
-      req.session.userId = {
-        id: user._id,
-      };
-      // const name = user.username;
-      res.redirect(`/users/${user._id}/main`);
+      console.log(await user);
+      // req.app.locals.user = user;
+      // req.app.locals.name = user.username;
+      req.session.user = user,
+        res.redirect(`/users/${user._id}/main`);
     } catch (error) {
-      res.redirect('/users/registration');
+      console.log(error);
+      // res.redirect('/users/registration');
     }
   }
 });
@@ -37,21 +40,18 @@ router.get('/signin', (req, res, next) => {
 });
 
 router.post('/signin', async (req, res) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
   try {
-    if (username && password) {
-      const currentUser = await Users.findOne({ username });
+    if (email && password) {
+      const currentUser = await User.findOne({ email });
       if (currentUser) {
         if (await bcrypt.compare(password, currentUser.password)) {
           console.log('Success login');
+          //TODO:
           console.log(currentUser);
-          req.app.locals.user = currentUser;
-          req.app.locals.name = currentUser.username;
-          // res.locals.name = ;
-
-          req.session.user = {
-            id: currentUser._id,
-          };
+          // req.app.locals.user = currentUser;
+          // req.app.locals.name = currentUser.username;
+          req.session.user = currentUser
           res.redirect(`/users/${currentUser._id}/main`);
         } else { res.render('error', { message: 'Неверный пароль! Повторите ввод' }); }
       } else { res.render('error', { message: 'Неверный логин! Повторите ввод' }); }
@@ -71,9 +71,16 @@ router.get('/signout', (req, res, next) => {
     res.redirect('/');
   });
 });
-module.exports = router;
 
 router.get("/:id/main", checkAuth, async (req, res, next) => {
-  const entries = await Entry.mostRecent();
+  //TODO: const entries = await Entry.mostRecent();
+  const entries = await Item.mostRecent();
+  console.log(entries);
   res.render("usermain", { entries })
 })
+
+
+
+
+
+module.exports = router;

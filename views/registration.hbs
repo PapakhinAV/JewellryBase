@@ -1,4 +1,4 @@
-<form class="regButtons" method="POST" action="/users/registration">
+<form class="regButtons" style="flex-direction: column;" method="POST" action="/users/registration">
   <div>
     <input type="email" name="email" placeholder="email">
   </div>
@@ -6,13 +6,16 @@
     <input type="password" name="password" placeholder="password">
   </div>
   <div>
-    <input type="tel" name="telephone" placeholder="tell number">
+    <input type="tel" name="phone" placeholder="tell number">
   </div>
   <div>
-    <input type="text" name="address" placeholder="adress (City, street, house)">
+    <input type="text" name="nameLombard" placeholder="organisation name">
   </div>
   <div>
-    <input type="text" name="manager" placeholder="manager name">
+    <input type="text" name="adressLombard" placeholder="adress (City, street, house)">
+  </div>
+  <div>
+    <input type="text" name="managerName" placeholder="manager name">
   </div>
   <button type="submit">Submit</button>
 </form>
