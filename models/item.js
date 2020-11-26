@@ -1,8 +1,11 @@
 const mongoose = require("mongoose");
-// const User = require("./user");
+const User = require("./user");
 
 const itemSchema = new mongoose.Schema({
-  authorID: user._id,
+  authorID: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  },
   category: String,
   nameItems: String,
   describe: String,
@@ -10,6 +13,9 @@ const itemSchema = new mongoose.Schema({
   price: Number,
 });
 
+itemSchema.statics.mostRecent = async function () {
+  return this.find().sort('createdAt').exec();
+}
 const Item = mongoose.model('Item', itemSchema);
 
 module.exports = Item;

@@ -1,30 +1,132 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #f8f4f2;
+}
+
+a {
+  color: #000000;
+  font-size: 36px;
+  text-decoration: none;
+}
+.button:hover {
+  background-color: rgb(233, 180, 180);
+  color: white;
+}
+
+input {
+  padding: 10px;
+  margin: 5px;
+}
+p {
+  color: grey;
+}
+.title {
+  text-align: center;
+  font-size: 44px;
+
+  position: relative;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  font-size: 2em;
+  letter-spacing: 4px;
+  overflow: hidden;
+  background: linear-gradient(90deg, #000, #fff, #000);
+  background-repeat: no-repeat;
+  background-size: 80%;
+  animation: animate 7s linear infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0);
+}
+
+@keyframes animate {
+  0% {
+    background-position: -500%;
+  }
+  100% {
+    background-position: 500%;
+  }
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 18px;
+  opacity: 0.6;
+}
+.line {
+  width: 200px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  height: 80vh;
+}
+.imgSize{
+  max-width: 200px;
+  max-height: 200px;
+  border-radius: 10px;  
 }
 .form123{
-  padding: 120px;
+  /* padding: 120px; */
   border: solid, 3px black;
   background-color: white;
-align-self: center;
-position: absolute;
-transform: translate(-50%, -50%);
-    left: 50%;
-    top: 50%;
+  align-self: center;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
 }
 
 .form12{
-  padding: 130px;
+  /* padding: 130px; */
   border: solid, 3px black;
   background-color: white;
-align-self: center;
-position: absolute;
-transform: translate(-50%, -50%);
-    left: 50%;
-    top: 50%;
+  align-self: center;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
 }
 .err{
- text-align: center;
- color: red;
- text-decoration: underline;
+  text-align: center;
+  color: red;
+  text-decoration: underline;
 }
+
+.regButtons{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-top: 50px;
+  margin: auto;
+  width: 80%;
+  height: 300px;
+}
+.inputs {
+  margin: auto;
+}
+.button {
+  width: 200px;
+  color: grey;
+  border: 1px solid black;
+  padding: 10px 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  margin: auto;
+}
+.layout {
+  background-color: rgb(204, 180, 180);
+  width: 300px;
+  padding: 30px 30px;
+  margin: auto;
+}
+
+
+
+
+
+
+
