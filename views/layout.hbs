@@ -14,7 +14,7 @@
 
 <body>
   <nav class="clearfix mar-b-1">
-    <ul class="no-bullets no-margin no-padding right">
+    <ul class="no-bullets no-margin no-padding right navi">
 
 
 
@@ -22,13 +22,13 @@
 
       {{#if email}}
       {{#if admin}}
-      <li class="pipe-separate t-light-green left"><a href='/admin/main'>Home</a></li>
+      <li class="pipe-separate t-light-green left"><a href='/admin/main' class="navi_item">Home</a></li>
       {{else}}
-      <li class="pipe-separate t-light-green left"><a href='/users/{{id}}/main'>Home</a></li>
+      <li class="pipe-separate t-light-green left"><a href='/users/{{id}}/main' class="navi_item">Home</a></li>
       {{/if}}
-      <li class="pipe-separate t-light-green left">User: {{email}}</li>
-      <li class="pipe-separate t-light-green left"><a href="/users/profile">Profile</a></li>
-      <li class="pipe-separate t-light-green left"><a href="/users/signout">Sign out</a></li>
+     li class="pipe-separate t-light-green left navi_item">User: {{email}}</li>
+      <li class="pipe-separate t-light-green left><a href="/users/profile" class="navi_item">Profile</a></li>
+    <li class="pipe-separate t-light-green left"><a href="/users/signout" class="navi_item">Sign out</a></li>
       {{/if}}
     </ul>
   </nav>

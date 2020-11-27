@@ -16,7 +16,7 @@ a {
 
 input {
   padding: 10px;
-  margin: 5px;
+  margin: 5px 0px;
 }
 p {
   color: grey;
@@ -124,9 +124,40 @@ p {
   margin: auto;
 }
 
+.navi {
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  align-items: center;
+}
 
+.navi_item {
+  color: black;
+  font-size: 16px;
+}
+.navi_item:hover {
+  border-bottom: 1px solid black;
+}
+.desc {
+  text-align: center;
+  margin-top: 50px;
+}
+.add_item {
+  width: 80%;
+  margin: auto;
+}
+.center {
+  display: block;
+  width: 200px;
+  text-align: center;
+}
 
-
-
-
-
+.columns {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 100px;
+}
+.list {
+  display: flex;
+  flex-direction: column;
+}
