@@ -62,7 +62,6 @@ p {
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
-  align-items: center;
   height: 80vh;
 }
 .imgSize{
@@ -158,48 +157,7 @@ p {
   justify-content: space-around;
   margin-top: 100px;
 }
-.button_block {
-  width: 50%;
-}
 .list {
   display: flex;
   flex-direction: column;
-  width: 50%;
-}
-.auth_blocks {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 50px;
-}
-.auth_title {
-  text-align: center;
-}
-.auth_buttons {
-  display: flex;
-}
-.auth_item {
-  font-size: 20px;
-}
-.item_card {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-.edit_button {
-  display: flex;
-  list-style-type: none;
-}
-.left {
-  margin-right: 20px;
-}
-.warning:hover {
-  background-color: red;
-}
-.edit {
-  display: block;
-  font-size: 18px;
-  color: black;
-  align-items: center;
-  border: 1px solid black;
-  padding: 10px;
 }

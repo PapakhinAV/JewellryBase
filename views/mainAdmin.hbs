@@ -1,55 +1,50 @@
 <main role="main">
+  <h1>Авторизованы</h1>
+  <ul class="entries-list no-bullets no-padding">
+    {{#each allUsersForAdminAuth}}
+    <li class="entry-item pad-b-4">
 
-  <div class="auth_blocks">
-    <div class="authin">
-      <h2 class="auth_title">Авторизованы</h2>
-      <ul class="entries-list no-bullets no-padding">
-        {{#each allUsersForAdminAuth}}
-        <li class="entry-item pad-b-4">
+      <a href="/admin/organisation/{{id}}" class="entry-title font-2 pad-b-1-4"> <label>Organization: </label>
+        {{nameLombard}}</a>
 
-          <a href="/admin/organisation/{{id}}" class="entry-title font-2 pad-b-1-4 auth_item"> <label>Organization: </label>
-            {{nameLombard}}</a>
+      <div class="entry-title font-2 pad-b-1-4"> <label>Manager: </label>{{managerName}} </div>
+      <div class="entry-title font-2 pad-b-1-4"> <label>E-mail: </label>{{email}} </div>
+      <div class="entry-title font-2 pad-b-1-4"> <label>Telephone: </label>{{phone}} </div>
 
-          <div class="entry-title font-2 pad-b-1-4"> <label>Manager: </label>{{managerName}} </div>
-          <div class="entry-title font-2 pad-b-1-4"> <label>E-mail: </label>{{email}} </div>
-          <div class="entry-title font-2 pad-b-1-4"> <label>Telephone: </label>{{phone}} </div>
+      <form method="post" action='/admin/deactivate/{{id}}' class="inline">
+        <input type="submit" value="Deactivate" class="no-border no-outline no-bg c-white hover-underline">
+      </form>
+      <form method="post" action='/admin/deleteUser/{{id}}' class="inline">
+        <input type="submit" value="Delete" class="no-border no-outline no-bg c-white hover-underline">
+      </form>
+    </li>
+    {{/each}}
+  </ul>
+  <h1>Не авторизованы</h1>
+  <ul class="entries-list no-bullets no-padding">
+    {{#each allUsersForAdminNonAuth}}
+    <li class="entry-item pad-b-4">
 
-          <div class="auth_buttons">
-            <form method="post" action='/admin/deactivate/{{id}}' class="inline">
-              <input type="submit" value="Deactivate" class="no-border no-outline no-bg c-white hover-underline">
-            </form>
-            <form method="post" action='/admin/deleteUser/{{id}}' class="inline">
-              <input type="submit" value="Delete" class="no-border no-outline no-bg c-white hover-underline">
-            </form>
-          </div>
-        </li>
-        {{/each}}
-      </ul>
-    </div>
-    <div class="authout">
-      <h2 class="auth_title">Не авторизованы</h2>
-      <ul class="entries-list no-bullets no-padding">
-        {{#each allUsersForAdminNonAuth}}
-        <li class="entry-item pad-b-4">
+      <a href="/admin/organisation/{{id}}" class="entry-title font-2 pad-b-1-4"> <label>Organization: </label>
+        {{nameLombard}}</a>
 
-          <a href="/admin/organisation/{{id}}" class="entry-title font-2 pad-b-1-4 auth_item"> <label>Organization: </label>
-            {{nameLombard}}</a>
+      <div class="entry-title font-2 pad-b-1-4"> <label>Manager: </label>{{managerName}} </div>
+      <div class="entry-title font-2 pad-b-1-4"> <label>E-mail: </label>{{email}} </div>
+      <div class="entry-title font-2 pad-b-1-4"> <label>Telephone: </label>{{phone}} </div>
 
-          <div class="entry-title font-2 pad-b-1-4"> <label>Manager: </label>{{managerName}} </div>
-          <div class="entry-title font-2 pad-b-1-4"> <label>E-mail: </label>{{email}} </div>
-          <div class="entry-title font-2 pad-b-1-4"> <label>Telephone: </label>{{phone}} </div>
+      <form method="post" action='/admin/activate/{{id}}' class="inline">
+        <input type="submit" value="Activate" class="no-border no-outline no-bg c-white hover-underline">
+      </form>
+      <form method="post" action='/admin/deleteUser/{{id}}' class="inline">
+        <input type="submit" value="Delete" class="no-border no-outline no-bg c-white hover-underline">
+      </form>
 
-          <div class="auth_buttons">
-            <form method="post" action='/admin/activate/{{id}}' class="inline">
-              <input type="submit" value="Activate" class="no-border no-outline no-bg c-white hover-underline">
-            </form>
-            <form method="post" action='/admin/deleteUser/{{id}}' class="inline">
-              <input type="submit" value="Delete" class="no-border no-outline no-bg c-white hover-underline">
-            </form>
-          </div>
-        </li>
-        {{/each}}
-      </ul>
-    </div>
-  </div>
+
+
+
+
+
+    </li>
+    {{/each}}
+  </ul>
 </main>

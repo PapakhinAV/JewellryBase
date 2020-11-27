@@ -1,20 +1,17 @@
-<div class="content">
-  <h1> <label>Item: </label> {{item.nameItems}}</h1>
+<h1> <label>Item: </label> {{item.nameItems}}</h1>
 
-  <p>{{item.describe}}</p>
-  <p> <label>Price: </label> {{item.price}}</p>
-  <img class="imgSize" src='{{item.linkPhoto}}'>
+<p>{{item.describe}}</p>
+<p> <label>Price: </label> {{item.price}}</p>
+<img class="imgSize" src='{{item.linkPhoto}}'>
+<ul class="no-bullets no-padding mar-t-2">
+  <li class="pipe-separate left">
+    <a href="/entries/{{ item._id }}/edit" class="c-white">edit</a>
+  </li>
 
-  <ul class="no-bullets no-padding mar-t-2 edit_button">
-    <li class="pipe-separate left">
-      <a href="/entries/{{ item._id }}/edit" class="c-white edit">edit</a>
-    </li>
-
-    <li class="pipe-separate left">
-      <form method="post" action="/entries/{{item._id}}" class="inline">
-        <input type="hidden" name="_method" value="delete">
-        <input type="submit" value="delete" class="no-border no-outline no-bg c-white hover-underline">
-      </form>
-    </li>
-  </ul>
-</div>
+  <li class="pipe-separate left">
+    <form method="post" action="/entries/{{item._id}}" class="inline">
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="delete" class="no-border no-outline no-bg c-white hover-underline">
+    </form>
+  </li>
+</ul>
