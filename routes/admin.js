@@ -1,6 +1,6 @@
 const express = require('express');
-const User = require('../models/user');
 const Item = require('../models/item');
+const User = require('../models/user');
 
 const bcrypt = require('bcrypt');
 
@@ -54,6 +54,7 @@ router.get("/organisation/:id", checkAdmin, async (req, res) => {
 })
 router.post("/deleteUser/:id", async (req, res) => {
   let id = req.params.id
+  Item.deleteMany({ authorID: id })
   await User.deleteOne({ _id: id })
   res.redirect("/")
 })

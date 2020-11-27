@@ -14,7 +14,6 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   let id = req.session.user.id
-  console.log(id);
   const newEntry = new Item({ nameItems: req.body.nameItems, describe: req.body.describe, price: req.body.price, linkPhoto: req.body.linkPhoto, authorID: id });
   await newEntry.save();
   const user = await User.findOne({ _id: req.session.user.id });
