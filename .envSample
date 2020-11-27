@@ -1,2 +1,2 @@
-DB=
+DB= mongodb+srv://user1234:user1234@cluster0.hsvep.mongodb.net/best_lombard?retryWrites=true&w=majority
 PORT=
