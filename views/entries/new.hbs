@@ -1,4 +1,4 @@
-<h1>Add new Item</h1>
+<h3 class="desc">Add new Item</h3>
 
 {{#if errors}}
 <span>Something went wrong:</span>
@@ -10,7 +10,7 @@
 {{/if}}
 
 
-<form style="display: flex; flex-direction: column " method="post" action="/entries">
+<form style="display: flex; flex-direction: column " method="post" action="/entries" class="add_item">
   <label for="title-input" class="block mar-b-1">Наименование товара:</label>
   <input id="title-input" name="nameItems" type="text" value="{{item.nameItems}}" tabindex="1"
     class="block w-100 no-outline no-border pad-1 mar-b-2">
