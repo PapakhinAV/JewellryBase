@@ -2,8 +2,6 @@
 <html>
 
 <head>
-  <link rel="stylesheet" href="/stylesheets/normalize.css">
-  <link rel="stylesheet" href="/stylesheets/application.css">
   <link rel="stylesheet" href="/stylesheets/style.css">
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -18,12 +16,19 @@
   <nav class="clearfix mar-b-1">
     <ul class="no-bullets no-margin no-padding right">
 
+
+
+
+
       {{#if email}}
+      {{#if admin}}
+      <li class="pipe-separate t-light-green left"><a href='/admin/main'>Home</a></li>
+      {{else}}
+      <li class="pipe-separate t-light-green left"><a href='/users/{{id}}/main'>Home</a></li>
+      {{/if}}
       <li class="pipe-separate t-light-green left">User: {{email}}</li>
       <li class="pipe-separate t-light-green left"><a href="/users/profile">Profile</a></li>
-      <li class="pipe-separate t-light-green left"><a href='/users/{{id}}/main'>Home</a></li>
       <li class="pipe-separate t-light-green left"><a href="/users/signout">Sign out</a></li>
-
       {{/if}}
     </ul>
   </nav>
