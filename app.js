@@ -14,10 +14,14 @@ const FileStore = require('session-file-store')(session);
 const indexRouter = require('./routes/index');
 const entriesRouter = require('./routes/entries');
 const usersRouter = require('./routes/users');
+const adminRouter = require('./routes/admin');
+
+
+require('dotenv').config()
 
 const app = express();
 
-mongoose.connect('mongodb://localhost:27017/project', {
+mongoose.connect(process.env.DB, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
@@ -69,6 +73,7 @@ app.use((req, res, next) => {
 app.use('/', indexRouter);
 app.use('/entries', entriesRouter);
 app.use('/users', usersRouter);
+app.use('/admin', adminRouter);
 
 
 app.use((req, res, next) => {
@@ -86,6 +91,6 @@ app.use((err, req, res, next) => {
   res.render('error');
 });
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
   console.log("ok");
 })

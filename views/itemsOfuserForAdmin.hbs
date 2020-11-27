@@ -1,0 +1,15 @@
+<main role="main">
+  <ul class="entries-list no-bullets no-padding">
+    {{#each itemsOfUser}}
+    <li class="entry-item pad-b-4">
+
+      <a href="/entries/{{id}}" class="entry-title font-2 pad-b-1-4"> <label>Item: </label> {{nameItems}}</a>
+
+      <div class="entry-title font-2 pad-b-1-4"> <label>Price: </label>{{price}} <span>rub.</span> </div>
+      <img class="imgSize" src='{{linkPhoto}}'>
+
+      <p class="entry-stub">{{describe}}</p>
+    </li>
+    {{/each}}
+  </ul>
+</main>

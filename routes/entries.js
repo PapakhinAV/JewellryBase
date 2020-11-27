@@ -7,14 +7,16 @@ const Item = require('../models/item');
 const User = require('../models/user');
 
 router.get('/', async (req, res, next) => {
-  const entries = await Item.find();
-  res.render('entries/index', { entries });
+  if (req.session?.user?.email) {
+    res.redirect(`/users/${req.session.user.id}/main`)
+  }
+  res.render('entries/index');
 });
 
 router.post('/', async (req, res, next) => {
-  let id = req.session.user._id
+  let id = req.session.user.id
+  console.log(id);
   const newEntry = new Item({ nameItems: req.body.nameItems, describe: req.body.describe, price: req.body.price, linkPhoto: req.body.linkPhoto, authorID: id });
-
   await newEntry.save();
   const user = await User.findOne({ _id: req.session.user.id });
   // user.story.push(newEntry._id);
