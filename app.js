@@ -66,6 +66,7 @@ app.use((req, res, next) => {
   res.locals.adressLombard = req.session?.user?.adressLombard
   res.locals.managerName = req.session?.user?.managerName
   res.locals.admin = req.session?.user?.admin
+  res.locals.authorised = req.session?.user?.authorised
   next()
 })
 

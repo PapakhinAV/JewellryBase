@@ -22,6 +22,7 @@ router.post('/registration', async (req, res) => {
       const pass = await bcrypt.hash(password, 10);
       const user = new User({ phone, nameLombard, adressLombard, managerName, password: pass, email });
       user.admin = false
+      user.authorised = false
       await user.save();
       req.session.user = {
         email: user.email,
@@ -31,6 +32,7 @@ router.post('/registration', async (req, res) => {
         adressLombard: user.adressLombard,
         managerName: user.managerName,
         admin: user.admin,
+        authorised: user.authorised,
       };
       res.redirect(`/users/${user._id}/main`);
     } catch (error) {
@@ -59,6 +61,7 @@ router.post('/signin', async (req, res) => {
             adressLombard: currentUser.adressLombard,
             managerName: currentUser.managerName,
             admin: currentUser.admin,
+            authorised: currentUser.authorised,
           },
             res.redirect(`/users/${currentUser._id}/main`);
         } else { res.render('error', { message: 'Неверный логин или пароль! Повторите ввод!' }); }
