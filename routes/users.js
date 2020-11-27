@@ -97,6 +97,10 @@ router.post("/profile/:id", checkAuth, async (req, res, next) => {
   if (email) {
     try {
       let currentUser = await User.findOne({ _id: req.params.id });
+      if (req.body.password) {
+        const pass = await bcrypt.hash(req.body.password, 10);
+        currentUser.password = pass
+      }
       currentUser.email = email
       currentUser.phone = phone
       currentUser.nameLombard = nameLombard
@@ -105,7 +109,7 @@ router.post("/profile/:id", checkAuth, async (req, res, next) => {
       await currentUser.save();
       res.redirect(`/users/${currentUser.id}/main`);
     } catch (error) {
-      res.send('Ошибка ввода!');
+      res.send('Ошибка ввода!', error);
     }
   }
 })
