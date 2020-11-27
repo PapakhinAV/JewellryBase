@@ -9,7 +9,7 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/js/application.js"></script>
 
-  <title>Broccoli Blog</title>
+  <title>Project</title>
 </head>
 
 <body>
@@ -18,7 +18,10 @@
 
       {{#if email}}
       <li class="pipe-separate t-light-green left">User: {{email}}</li>
-      <li class="pipe-separate t-light-green left"><a href="/users/signout">sign out</a></li>
+      <li class="pipe-separate t-light-green left"><a href="/users/profile">Profile</a></li>
+      <li class="pipe-separate t-light-green left"><a href='/users/{{id}}/main'>Home</a></li>
+      <li class="pipe-separate t-light-green left"><a href="/users/signout">Sign out</a></li>
+
       {{/if}}
     </ul>
   </nav>

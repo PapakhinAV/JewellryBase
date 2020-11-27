@@ -13,8 +13,12 @@ const itemSchema = new mongoose.Schema({
   price: Number,
 });
 
-itemSchema.statics.mostRecent = async function () {
-  return this.find().sort('createdAt').exec();
+itemSchema.statics.show = async function () {
+  console.log(req.session.user.admin);
+  if (status) {
+    return this.find()
+  }
+  return this.find({ authorID: req.session.user.id })
 }
 const Item = mongoose.model('Item', itemSchema);
 

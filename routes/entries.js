@@ -7,7 +7,7 @@ const Item = require('../models/item');
 const User = require('../models/user');
 
 router.get('/', async (req, res, next) => {
-  const entries = await Item.mostRecent();
+  const entries = await Item.find();
   res.render('entries/index', { entries });
 });
 

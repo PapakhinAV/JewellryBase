@@ -1,0 +1,19 @@
+<form class="regButtons" style="flex-direction: column;" method="POST" action="/users/profile/{{id}}">
+  <div>
+    <input type="email" name="email" value="{{currentUser.email}}" placeholder="email">
+  </div>
+  <div>
+    <input type="tel" name="phone" value="{{currentUser.phone}}" placeholder="tell number">
+  </div>
+  <div>
+    <input type="text" name="nameLombard" value="{{currentUser.nameLombard}}" placeholder="organisation name">
+  </div>
+  <div>
+    <input type="text" name="adressLombard" value="{{currentUser.adressLombard}}"
+      placeholder="adress (City, street, house)">
+  </div>
+  <div>
+    <input type="text" name="managerName" value="{{currentUser.managerName}}" placeholder="manager name">
+  </div>
+  <button type="submit">Save</button>
+</form>

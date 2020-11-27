@@ -35,8 +35,7 @@ router.post('/registration', async (req, res) => {
       },
         res.redirect(`/users/${user._id}/main`);
     } catch (error) {
-      console.log(error);
-      // res.redirect('/users/registration');
+      res.redirect('/users/registration');
     }
   }
 });
@@ -53,7 +52,6 @@ router.post('/signin', async (req, res) => {
       if (currentUser) {
         if (await bcrypt.compare(password, currentUser.password)) {
           console.log('Success login');
-          //TODO:
           console.log(currentUser);
           req.session.user = {
             email: currentUser.email,
@@ -64,12 +62,10 @@ router.post('/signin', async (req, res) => {
             managerName: currentUser.managerName,
             admin: currentUser.admin,
           },
-            // req.session.user = {
-            //   email: currentUser.email
-            // }
+            //if admin
             res.redirect(`/users/${currentUser._id}/main`);
-        } else { res.render('error', { message: 'Неверный пароль! Повторите ввод' }); }
-      } else { res.render('error', { message: 'Неверный логин! Повторите ввод' }); }
+        } else { res.render('error', { message: 'Неверный логин или пароль! Повторите ввод!' }); }
+      } else { res.render('error', { message: 'Неверный логин или пароль! Повторите ввод!' }); }
     } else { res.render('error', { message: 'Заполните все поля' }); }
   } catch (error) {
     res.render('error', { error });
@@ -88,12 +84,35 @@ router.get('/signout', (req, res, next) => {
 
 router.get("/:id/main", checkAuth, async (req, res, next) => {
   //TODO: const entries = await Entry.mostRecent();
-  const entries = await Item.mostRecent();
+  const entries = await Item.find();
   console.log(entries);
   res.render("usermain", { entries })
 })
 
+router.get("/profile", checkAuth, async (req, res, next) => {
+  let id = req.session.user.id
+  let currentUser = await User.findOne({ _id: id });
+  res.render('profile', { currentUser, id })
+})
 
+router.post("/profile/:id", checkAuth, async (req, res, next) => {
+  const { phone, nameLombard, adressLombard, managerName, email } = req.body;
+  if (email) {
+    try {
+      let currentUser = await User.findOne({ _id: req.params.id });
+      console.log(currentUser);
+      currentUser.email = email
+      currentUser.phone = phone
+      currentUser.nameLombard = nameLombard
+      currentUser.adressLombard = adressLombard
+      currentUser.managerName = managerName
+      await currentUser.save();
+      res.redirect(`/users/${currentUser.id}/main`);
+    } catch (error) {
+      res.send('Ошибка ввода!');
+    }
+  }
+})
 
 
 
