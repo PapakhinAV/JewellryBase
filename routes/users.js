@@ -22,8 +22,8 @@ router.post('/registration', async (req, res) => {
       const pass = await bcrypt.hash(password, 10);
       const user = new User({ phone, nameLombard, adressLombard, managerName, password: pass, email });
       user.admin = false
+      user.authorised = false
       await user.save();
-      console.log(await user);
       req.session.user = {
         email: user.email,
         id: user._id,
@@ -32,8 +32,9 @@ router.post('/registration', async (req, res) => {
         adressLombard: user.adressLombard,
         managerName: user.managerName,
         admin: user.admin,
-      },
-        res.redirect(`/users/${user._id}/main`);
+        authorised: user.authorised,
+      };
+      res.redirect(`/users/${user._id}/main`);
     } catch (error) {
       res.redirect('/users/registration');
     }
@@ -52,7 +53,6 @@ router.post('/signin', async (req, res) => {
       if (currentUser) {
         if (await bcrypt.compare(password, currentUser.password)) {
           console.log('Success login');
-          console.log(currentUser);
           req.session.user = {
             email: currentUser.email,
             id: currentUser._id,
@@ -61,8 +61,8 @@ router.post('/signin', async (req, res) => {
             adressLombard: currentUser.adressLombard,
             managerName: currentUser.managerName,
             admin: currentUser.admin,
+            authorised: currentUser.authorised,
           },
-            //if admin
             res.redirect(`/users/${currentUser._id}/main`);
         } else { res.render('error', { message: 'Неверный логин или пароль! Повторите ввод!' }); }
       } else { res.render('error', { message: 'Неверный логин или пароль! Повторите ввод!' }); }
@@ -84,8 +84,8 @@ router.get('/signout', (req, res, next) => {
 
 router.get("/:id/main", checkAuth, async (req, res, next) => {
   //TODO: const entries = await Entry.mostRecent();
-  const entries = await Item.find();
-  console.log(entries);
+  if (req.session.user.admin) { res.redirect(`/admin/main`) }
+  const entries = await Item.find({ authorID: req.session.user.id });
   res.render("usermain", { entries })
 })
 
@@ -100,7 +100,6 @@ router.post("/profile/:id", checkAuth, async (req, res, next) => {
   if (email) {
     try {
       let currentUser = await User.findOne({ _id: req.params.id });
-      console.log(currentUser);
       currentUser.email = email
       currentUser.phone = phone
       currentUser.nameLombard = nameLombard
