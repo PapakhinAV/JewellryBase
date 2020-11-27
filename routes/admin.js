@@ -37,7 +37,6 @@ router.post('/signin', async (req, res, next) => {
   } catch (error) {
     res.render('error', { error });
   }
-
 });
 
 router.get('/main', checkAdmin, async (req, res, next) => {

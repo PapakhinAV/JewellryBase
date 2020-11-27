@@ -13,10 +13,8 @@ router.get('/registration', (req, res, next) => {
 });
 
 router.post('/registration', async (req, res) => {
-  //TODO:
   const { phone, nameLombard, adressLombard, managerName, password, email } = req.body;
   if (password && email) {
-    TODO:    // if (username && password && email) {
 
     try {
       const pass = await bcrypt.hash(password, 10);
@@ -83,10 +81,9 @@ router.get('/signout', (req, res, next) => {
 });
 
 router.get("/:id/main", checkAuth, async (req, res, next) => {
-  //TODO: const entries = await Entry.mostRecent();
-  if (req.session.user.admin) { res.redirect(`/admin/main`) }
+  if (req.session.user.admin) { return res.redirect(`/admin/main`) }
   const entries = await Item.find({ authorID: req.session.user.id });
-  res.render("usermain", { entries })
+  return res.render("usermain", { entries })
 })
 
 router.get("/profile", checkAuth, async (req, res, next) => {

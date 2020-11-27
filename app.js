@@ -29,6 +29,7 @@ mongoose.connect(process.env.DB, {
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+app.set('trust proxy', 1)
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -69,7 +70,6 @@ app.use((req, res, next) => {
   res.locals.authorised = req.session?.user?.authorised
   next()
 })
-
 
 app.use('/', indexRouter);
 app.use('/entries', entriesRouter);

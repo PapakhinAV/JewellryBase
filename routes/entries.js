@@ -1,6 +1,5 @@
 const express = require('express');
 const { checkAuth } = require('../middleweare/auth');
-// const { checkEdit } = require('../middleweare/auth');
 
 const router = express.Router();
 const Item = require('../models/item');
@@ -8,9 +7,9 @@ const User = require('../models/user');
 
 router.get('/', async (req, res, next) => {
   if (req.session?.user?.email) {
-    res.redirect(`/users/${req.session.user.id}/main`)
+    return res.redirect(`/users/${req.session.user.id}/main`)
   }
-  res.render('entries/index');
+  return res.render('entries/index');
 });
 
 router.post('/', async (req, res, next) => {
@@ -19,17 +18,13 @@ router.post('/', async (req, res, next) => {
   const newEntry = new Item({ nameItems: req.body.nameItems, describe: req.body.describe, price: req.body.price, linkPhoto: req.body.linkPhoto, authorID: id });
   await newEntry.save();
   const user = await User.findOne({ _id: req.session.user.id });
-  // user.story.push(newEntry._id);
-  // await user.save();
   res.redirect(`/users/${id}/main`);
 });
 
-// new entries
 router.get('/new', checkAuth, (req, res, next) => {
   res.render('entries/new');
 });
 
-// detail entry
 router.get('/:id', checkAuth, async (req, res, next) => {
   const item = await Item.findById(req.params.id);
   res.render('entries/show', { item });
@@ -47,12 +42,12 @@ router.put('/:id', checkAuth, async (req, res, next) => {
 
   res.redirect(`/entries/${item.id}`);
 });
-// checkEdit
+
 router.delete('/:id', checkAuth, async (req, res, next) => {
   await Item.deleteOne({ _id: req.params.id });
   res.redirect(`/users/${req.session.user.id}/main`);
 });
-// checkEdit
+
 router.get('/:id/edit', checkAuth, async (req, res, next) => {
   const item = await Item.findById(req.params.id);
   res.render('entries/edit', { item });
