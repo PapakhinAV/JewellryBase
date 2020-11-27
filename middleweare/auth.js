@@ -1,7 +1,7 @@
 const User = require('../models/user');
 
 const checkAuth = async (req, res, next) => {
-  const userId = req.session?.user?._id;
+  const userId = req.session?.user?.id;
 
   if (userId) {
     const user = await User.findById(userId);

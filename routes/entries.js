@@ -7,7 +7,7 @@ const Item = require('../models/item');
 const User = require('../models/user');
 
 router.get('/', async (req, res, next) => {
-  const entries = await Item.mostRecent();
+  const entries = await Item.find();
   res.render('entries/index', { entries });
 });
 
@@ -28,12 +28,12 @@ router.get('/new', checkAuth, (req, res, next) => {
 });
 
 // detail entry
-router.get('/:id', async (req, res, next) => {
-  const entry = await Item.findById(req.params.id);
-  res.render('entries/show', { entry });
+router.get('/:id', checkAuth, async (req, res, next) => {
+  const item = await Item.findById(req.params.id);
+  res.render('entries/show', { item });
 });
 
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', checkAuth, async (req, res, next) => {
   const item = await Item.findById(req.params.id);
 
   item.nameItems = req.body.nameItems;
@@ -46,13 +46,29 @@ router.put('/:id', async (req, res, next) => {
   res.redirect(`/entries/${item.id}`);
 });
 // checkEdit
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', checkAuth, async (req, res, next) => {
   await Item.deleteOne({ _id: req.params.id });
-  res.redirect('/');
+  res.redirect(`/users/${req.session.user.id}/main`);
 });
 // checkEdit
-router.get('/:id/edit', async (req, res, next) => {
+router.get('/:id/edit', checkAuth, async (req, res, next) => {
   const item = await Item.findById(req.params.id);
   res.render('entries/edit', { item });
 });
+
+router.post('/edit/:id', checkAuth, async (req, res, next) => {
+  let { nameItems, describe, price, linkPhoto } = req.body
+  let { id } = req.params
+  let advitise = await Item.findOne({ _id: id })
+  advitise.nameItems = nameItems
+  advitise.describe = describe
+  advitise.price = price
+  advitise.linkPhoto = linkPhoto
+
+  await advitise.save()
+
+  res.redirect(`/users/${req.session.user.id}/main`);
+});
+
+
 module.exports = router;
