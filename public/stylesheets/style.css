@@ -167,6 +167,7 @@ p {
   border: 1px solid rgba(83, 61, 61, 0.5);
   box-shadow: 0 0 10px rgba(83, 61, 61, 0.5);
   margin-bottom: 15px;
+  justify-content: space-between;
 }
 .item_info {
   display: flex;
@@ -192,6 +193,7 @@ ul {
   padding: 10px 15px;
   color: black;
   border: 1px solid black;
+  border-radius: 3px;
   background-color: rgb(239, 239, 239);
 }
 .show_edit:hover {
@@ -254,4 +256,8 @@ ul {
 }
 .card_link {
   list-style-type: none;
+}
+
+.buttonSize{
+  width: 100px;
 }

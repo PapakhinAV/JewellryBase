@@ -12,13 +12,19 @@
 
   <ul class="no-bullets no-padding mar-t-2 show_list">
     <li class="pipe-separate left show_button">
-      <a href="/entries/{{ item._id }}/edit" class="c-white show_edit">Edit</a>
+      <form method="get" action="/entries/{{ item._id }}/edit" style="border-color: black;" class="inline">
+        <input type="hidden" name="_method" value="Edit">
+        <input type="submit" value="Edit" class="buttonSize no-border no-outline no-bg c-white hover-underline cursor">
+      </form>
     </li>
 
+
+
     <li class="pipe-separate left show_button">
-      <form method="post" action="/entries/{{item._id}}" class="inline">
-        <input type="hidden" name="_method" value="delete">
-        <input type="submit" value="delete" class="no-border no-outline no-bg c-white hover-underline cursor">
+      <form method="post" action="/entries/{{item._id}}" style="border-color: black;" class="inline">
+        <input type="hidden" name="_method" value="Delete">
+        <input type="submit" value="Delete"
+          class="buttonSize no-border no-outline no-bg c-white hover-underline cursor">
       </form>
     </li>
   </ul>
